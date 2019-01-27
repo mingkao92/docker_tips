@@ -1,6 +1,6 @@
 # docker_tips
 
-学习docker过程中的一些笔记，操作系统基于CentOS7.4
+学习docker过程中的一些笔记，操作系统为CentOS7.4
 
 ### 基本概念
 - 容器化：使用Linux容器来部署应用
@@ -20,14 +20,14 @@ systemctl enable docker
 # 查看信息
 docker info
 
+# 列出所有镜像
+docker images
+
 # 列出运行中的容器
 docker ps
 
 # 列出所有容器
 docker ps -a
-
-# 列出所有镜像
-docker images
 
 # 进入运行中的容器，执行指定命令
 docker exec -it CONTAINER COMMAND [ARG...]
@@ -46,3 +46,7 @@ docker rmi $(docker images -q)
 ```
 
 ### Dockerfile
+```bash
+# 从当前目录的Dockerfile构建镜像
+docker build -t NAME[:TAG] .
+```
