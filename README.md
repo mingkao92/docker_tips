@@ -15,10 +15,14 @@
 systemctl enable docker
 ```
 
+#### Docker Compose
+[官方文档](https://docs.docker.com/compose/install/)
+
+
 ### 基本命令
-表示方法：
+表示方法
 > * 镜像 IMAGE
-> REPOSITORY[:TAG] # 未指定TAG取latest
+> REPOSITORY[:TAG] # 未指定TAG为latest
 > IMAGE ID
 > * 容器 CONTAINER
 > NAMES # 未命名则随机生成
@@ -26,31 +30,33 @@ systemctl enable docker
 > * 网络 NETWORK
 > NAME
 > NETWORK ID
+> * 仓库 REGISTRY
+> * 仓库用户名 REGISTRY_USERNAME
+> * 仓库密码 REGISTRY_PASSWORD
+> * hosts对 HOST_PAIR
+> * volume对 VOLUME_PAIR
+> * port对 PORT_PAIR
 
+
+安装信息
 ```bash
-# 查看安装信息
-docker info
-
-# 查看安装版本
+# 查看client版本
 docker --version
 
-# 拉取镜像
-docker pull IMAGE
+# 查看安装信息
+docker version
+```
+
+镜像和容器
+```
+# 从当前目录下的Dockerfile构建镜像
+docker build -t IMAGE .
 
 # 列出本地所有镜像
 docker images
 
-# 查看本地镜像历史
-docker history IMAGE
-
-# 创建指定名称容器
-docker create --name NAME IMAGE
-
-# 运行容器
-docker start CONTAINER
-
-# 运行容器并将绑定输出
-docker start -a CONTAINER
+# 创建并启动容器
+docker run --add-host HOST_PAIR --volume VOLUME_PAIR --publish PORT_PAIR --name CONTAINER -d IMAGE
 
 # 列出运行中的容器
 docker ps
@@ -58,36 +64,30 @@ docker ps
 # 列出所有容器
 docker ps -a
 
-# 查看容器端口映射
-docker port CONTAINER
+# 进入运行中的容器，执行shell命令
+docker exec -it CONTAINER sh
 
-# 进入运行中的容器，执行指定命令
-docker exec -it CONTAINER COMMAND [ARG...]
+# 输出并跟踪容器日志
+docker logs -f --tail=10 CONTAINER
 
-# 移除容器
-docker rm CONTAINER [CONTAINER...]
+# 运行容器
+docker start CONTAINER [CONTAINER...]
+
+# 停止容器
+docker stop CONTAINER [CONTAINER...]
+
+# 重启容器
+docker restart CONTAINER [CONTAINER...]
 
 # 移除镜像
 docker rmi IMAGE [IMAGE...]
 
-# 移除所有容器
-docker rm $(docker ps -aq)
+# 移除虚悬镜像
+docker rmi $(docker images -q -f dangling=true)
 
-# 移除所有镜像
-docker rmi $(docker images -q)
+# 移除容器
+docker rm CONTAINER [CONTAINER...]
 
-# 显示docker网络
-docker network ls
-
-# 显示网络详细信息
-docker network inspect NETWORK
+# 强制移除容器
+docker rm -f CONTAINER [CONTAINER...]
 ```
-
-### Dockerfile
-```bash
-# 从当前目录的Dockerfile构建镜像
-docker build -t IMAGE .
-```
-
-### Docker Compose
-[官方安装文档](https://docs.docker.com/compose/install/)
