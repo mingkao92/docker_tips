@@ -15,10 +15,6 @@
 systemctl enable docker
 ```
 
-#### Docker Compose
-[官方文档](https://docs.docker.com/compose/install/)
-
-
 ### 基本命令
 表示方法
 > * 镜像 IMAGE
@@ -48,7 +44,7 @@ docker version
 ```
 
 镜像和容器
-```
+```bash
 # 从当前目录下的Dockerfile构建镜像
 docker build -t IMAGE .
 
@@ -91,3 +87,7 @@ docker rm CONTAINER [CONTAINER...]
 # 强制移除容器
 docker rm -f CONTAINER [CONTAINER...]
 ```
+
+### 特殊用法
+
+- [容器内执行宿主机docker命令](skills/use_docker_in_container.md)
