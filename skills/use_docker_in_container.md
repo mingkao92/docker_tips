@@ -29,8 +29,10 @@ chown root:root /root/tools/docker/docker
 ```
 
 > 拉取私有镜像仓库的镜像<br />
-> 如果有需要，要在宿主机配置认证信息并映射到容器内部<br />
-> 映射为/root/.docker/config.json:/root/.docker/config.json
+> 如果有需要，要在宿主机配置认证信息并映射到容器内部
+```
+-v /root/.docker/config.json:/root/.docker/config.json
+```
 
 > 最终命令
 ```bash
@@ -41,10 +43,8 @@ docker run -it \
     busybox sh
 ```
 
-
 ### 其他实现方案
 可以借助ssh容器，通过ssh协议来连接服务器（需要add_host映射host:$(ifconfig docker0 | awk '/inet/{print $2}')）
-
 
 ### 参考链接
 
