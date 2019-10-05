@@ -17,14 +17,14 @@ systemctl enable docker
 
 ### 基本命令
 表示方法
-> * 镜像 IMAGE
-> REPOSITORY[:TAG] # 未指定TAG为latest
+> * 镜像 IMAGE<br />
+> REPOSITORY[:TAG] # 未指定TAG为latest<br />
 > IMAGE ID
-> * 容器 CONTAINER
-> NAMES # 未命名则随机生成
+> * 容器 CONTAINER<br />
+> NAMES # 未命名则随机生成<br />
 > CONTAINER ID
-> * 网络 NETWORK
-> NAME
+> * 网络 NETWORK<br />
+> NAME<br />
 > NETWORK ID
 > * 仓库 REGISTRY
 > * 仓库用户名 REGISTRY_USERNAME
