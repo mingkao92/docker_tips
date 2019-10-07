@@ -75,17 +75,22 @@ docker stop CONTAINER [CONTAINER...]
 # 重启容器
 docker restart CONTAINER [CONTAINER...]
 
-# 移除镜像
-docker rmi IMAGE [IMAGE...]
-
-# 移除虚悬镜像
-docker rmi $(docker images -q -f dangling=true)
-
 # 移除容器
 docker rm CONTAINER [CONTAINER...]
 
 # 强制移除容器
 docker rm -f CONTAINER [CONTAINER...]
+
+# 移除所有停止的容器
+docker container prune
+docker rm $(docker ps -q -f status=exited)
+
+# 移除镜像
+docker rmi IMAGE [IMAGE...]
+
+# 移除所有虚悬镜像
+docker image prune
+docker rmi $(docker images -q -f dangling=true)
 ```
 
 ### 特殊用法
